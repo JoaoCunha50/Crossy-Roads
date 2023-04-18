@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Tarefa1_2022li1g014</title><link href="linuwial.css" rel="stylesheet" type="text/css" title="Linuwial" /><link rel="stylesheet" type="text/css" href="quick-jump.css" /><link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" /><script src="haddock-bundle.min.js" async="async" type="text/javascript"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { processClass: "mathjax", ignoreClass: ".*" } });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script></head><body><div id="package-header"><span class="caption empty">&nbsp;</span><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul></div><div id="content"><div id="module-header"><table class="info"><tr><th valign="top">Copyright</th><td>Gon&#231;alo da Silva Alves &lt;a104079@alunos.uminho.pt&gt;<br />Jo&#227;o Manuel Machado da Cunha &lt;a104611@alunos.uminho.pt&gt;</td></tr><tr><th>Safe Haskell</th><td>Safe-Inferred</td></tr></table><p class="caption">Tarefa1_2022li1g014</p></div><div id="description"><p class="caption">Description</p><div class="doc"><p>M&#243;dulo para a realiza&#231;&#227;o da Tarefa 1 do projeto de LI1 em 2022/23.</p><p>Para realizar a seguinte tarefa criamos v&#225;rias fun&#231;&#245;es auxiliares que seguiam as condicionantes do enunciado , tais como,</p><ul><li>N&#227;o existem obst&#225;culos em terrenos impr&#243;prios, e.g. troncos em estradas ou relvas,  &#769;arvores em rios ou estradas, etc;</li><li>Rios cont&#237;guos t&#234;m dire&#231;&#245;es opostas;</li><li>Rios t&#234;m de ter obrigatoriamente um tronco;</li><li>Troncos t&#234;m, no m&#225;ximo, 5 unidades de comprimento;</li><li>Carros t&#234;m, no m&#225;ximo, 3 unidades de comprimento;</li><li>Em qualquer linha existe, no m&#237;nimo, um &#8220;obst&#225;culo&#8221; Nenhum. Ou seja, uma linha n&#227;o pode ser composta exclusivamente por obst&#225;culos ,precisando de haver pelo menos um espa&#231;o livre;</li><li>O comprimento da lista de obst&#225;culos de cada linha corresponde exatamente `a largura do mapa;</li><li>Contiguamente, n&#227;o devem existir mais do que 4 rios, nem 5 estradas ou relvas .</li></ul></div></div><div id="synopsis"><details id="syn"><summary>Synopsis</summary><ul class="details-toggle" data-details-id="syn"><li class="src short"><a href="#v:obstaculosMapa">obstaculosMapa</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:riosContiguos">riosContiguos</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:rioTronco">rioTronco</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:troncoValido">troncoValido</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:group">group</a> :: Eq a =&gt; [a] -&gt; [[a]]</li><li class="src short"><a href="#v:troncoValidoAux">troncoValidoAux</a> :: (<a href="LI12223.html#t:Terreno" title="LI12223">Terreno</a>, [<a href="LI12223.html#t:Obstaculo" title="LI12223">Obstaculo</a>]) -&gt; Bool</li><li class="src short"><a href="#v:troncoValidoAux2">troncoValidoAux2</a> :: (<a href="LI12223.html#t:Terreno" title="LI12223">Terreno</a>, [<a href="LI12223.html#t:Obstaculo" title="LI12223">Obstaculo</a>]) -&gt; Bool</li><li class="src short"><a href="#v:carroValidoAux">carroValidoAux</a> :: (<a href="LI12223.html#t:Terreno" title="LI12223">Terreno</a>, [<a href="LI12223.html#t:Obstaculo" title="LI12223">Obstaculo</a>]) -&gt; Bool</li><li class="src short"><a href="#v:carroValidoAux2">carroValidoAux2</a> :: (<a href="LI12223.html#t:Terreno" title="LI12223">Terreno</a>, [<a href="LI12223.html#t:Obstaculo" title="LI12223">Obstaculo</a>]) -&gt; Bool</li><li class="src short"><a href="#v:carroValido">carroValido</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:obsSeguidos">obsSeguidos</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:larguraObs">larguraObs</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:terrenosContiguos">terrenosContiguos</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:mapaValido">mapaValido</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li></ul></details></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a id="v:obstaculosMapa" class="def">obstaculosMapa</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:obstaculosMapa" class="selflink">#</a></p><div class="doc"><p>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g014.html#v:obstaculosMapa" title="Tarefa1_2022li1g014">obstaculosMapa</a></code> recebe um mapa e considera-o verdadeiro se seguir a primeira condi&#231;&#227;o , ou falso caso n&#227;o seja esse o caso .</p><p>Esta fun&#231;&#227;o pode ser definida por :</p><pre>
+obstaculosMapa::Mapa -&gt;Bool
+obstaculosMapa (Mapa x [])=True
+obstaculosMapa (Mapa x ((Rio v, l):t)) |elem Arvore l || elem Carro l = False
+                                       |otherwise = obstaculosMapa (Mapa x t)
+obstaculosMapa (Mapa x ((Estrada v , l):t)) |elem Arvore l || elem Tronco l = False
+                                            |otherwise = obstaculosMapa (Mapa x t) 
+obstaculosMapa (Mapa x ((Relva , l):t)) |elem Carro l || elem Tronco l = False
+                                        |otherwise = obstaculosMapa (Mapa x t)
+</pre><h2>Exemplos de utiliza&#231;&#227;o :</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>obstaculosMapa (Mapa 2 [(Rio 2,[Arvore,Nenhum])])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>obstaculosMapa (Mapa 2 [(Relva,[Arvore,Nenhum])])
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a id="v:riosContiguos" class="def">riosContiguos</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:riosContiguos" class="selflink">#</a></p><div class="doc"><p>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g014.html#v:riosContiguos" title="Tarefa1_2022li1g014">riosContiguos</a></code> recebe um mapa e considera-o verdadeiro caso siga a condi&#231;&#227;o 2 , n&#227;o sendo esse o caso considera-o falso .</p><p>Esta fun&#231;&#227;o est&#225; definida por :</p><pre>
+riosContiguos::Mapa -&gt; Bool
+riosContiguos (Mapa x [(a,l)])=True
+riosContiguos (Mapa x ((Rio v1 ,l1):(Rio v2 ,l2):t)) |v1&gt;0 &amp;&amp; v2&gt;0 = False
+                                                     |v1&lt;0 &amp;&amp; v2&lt;0 = False
+                                                     |otherwise = riosContiguos (Mapa x ((Rio v2,l2):t))
+riosContiguos (Mapa x ((Rio v1 ,l1):(Estrada v,l):t))=riosContiguos (Mapa x ((Estrada v,l):t))
+riosContiguos (Mapa x ((Rio v1 ,l1):(Relva,l):t))=riosContiguos (Mapa x ((Relva,l):t))
+riosContiguos (Mapa x ((Estrada v,l):t))=riosContiguos (Mapa x t)
+riosContiguos (Mapa x ((Relva,l):t))=riosContiguos (Mapa x t)
+</pre><h2>Exemplos de utiliza&#231;&#227;o :</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>riosContiguos (Mapa 2 [(Rio (-1),[Nenhum,Tronco]),(Rio 1,[Tronco,Nenhum])])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>riosContiguos (Mapa 2 [(Rio 1,[Nenhum,Tronco]),(Rio 1,[Tronco,Nenhum])])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a id="v:rioTronco" class="def">rioTronco</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:rioTronco" class="selflink">#</a></p><div class="doc"><p>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g014.html#v:rioTronco" title="Tarefa1_2022li1g014">rioTronco</a></code> classifica um mapa como verdadeiro ou falso tendo como crit&#233;rio a condi&#231;&#227;o 3 .</p><p>Esta fun&#231;&#227;o esta definida por :</p><pre>rioTronco::Mapa-&gt;Bool
+rioTronco (Mapa x [])=True
+rioTronco (Mapa x ((Rio v,l):t)) |elem Tronco l == False = False
+                                 |otherwise = rioTronco (Mapa x t)
+rioTronco (Mapa x ((Estrada v ,l):t))=rioTronco (Mapa x t)
+rioTronco (Mapa x ((Relva , l):t))=rioTronco (Mapa x t)
+</pre><h2>Exemplos de utiliza&#231;&#227;o :</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>rioTronco (Mapa 2 [(Rio 2 ,[Nenhum,Nenhum])])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>rioTronco (Mapa 2 [(Rio 2 ,[Tronco,Nenhum])])
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a id="v:troncoValido" class="def">troncoValido</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:troncoValido" class="selflink">#</a></p><div class="doc"><p>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g014.html#v:troncoValido" title="Tarefa1_2022li1g014">troncoValido</a></code> classifica um mapa como verdadeiro ou falso tendo como crit&#233;rio a condi&#231;&#227;o 4 , atrav&#233;s de 3 fun&#231;&#245;es auxiliares , a <code><a href="Tarefa1_2022li1g014.html#v:troncoValidoAux" title="Tarefa1_2022li1g014">troncoValidoAux</a></code> e a <code><a href="Tarefa1_2022li1g014.html#v:troncoValidoAux2" title="Tarefa1_2022li1g014">troncoValidoAux2</a></code> .
+Ps : &quot;A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g014.html#v:group" title="Tarefa1_2022li1g014">group</a></code> agrupa os elementos consecutivos iguais de uma lista , numa lista de listas&quot;.</p><p>Estas fun&#231;&#245;es est&#227;o definidas por :</p><pre>
+troncoValido::Mapa-&gt;Bool
+troncoValido (Mapa x [])=True
+troncoValido (Mapa x (h:t))|troncoValidoAux h == False ||troncoValidoAux2 h == False = False
+                           |otherwise = troncoValido (Mapa x t)
+
+group :: Eq a =&gt; [a] -&gt; [[a]]
+group [] = []
+group [x] = [[x]]
+group (h:t)
+    | elem h (head r) = (h : (head r)) : tail r
+    | otherwise = [h] : r
+    where r = group t
+
+troncoValidoAux :: (Terreno,[Obstaculo])-&gt;Bool
+troncoValidoAux (Rio v , [])=True
+troncoValidoAux (Rio v,[x1])=True
+troncoValidoAux (Rio v,[x1,x2])=True
+troncoValidoAux (Rio v,[x1,x2,x3])=True
+troncoValidoAux (Rio v,[x1,x2,x3,x4])=True
+troncoValidoAux (Rio v,[x1,x2,x3,x4,x5])=True
+troncoValidoAux (Rio v , (x1:x2:x3:x4:x5:x6:t)) |x1==Tronco &amp;&amp; x1==x2 &amp;&amp; x1==x3 &amp;&amp; x1==x4 &amp;&amp; x1==x5 &amp;&amp; x1==x6 = False
+                                                |otherwise = troncoValidoAux (Rio v, x2:x3:x4:x5:x6:t)
+troncoValidoAux (Estrada v,x)=True
+troncoValidoAux (Relva , x)=True
+
+troncoValidoAux2 :: (Terreno, [Obstaculo]) -&gt; Bool
+troncoValidoAux2 (Rio v , l) |elem Tronco (head(group l)) &amp;&amp; elem Tronco (last(group l)) &amp;&amp; (length (head (group l))+length (last (group l))&gt;5) = False
+                             |otherwise = True
+troncoValidoAux2 (Estrada v,l)=True
+troncoValidoAux2 (Relva,l)=True
+</pre><h2>Exemplos de utiliza&#231;&#227;o :</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>troncoValido (Mapa 7 ,[(Rio 2 , [Tronco,Tronco,Tronco,Nenhum,Tronco,Tronco,Tronco])])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>troncoValido (Mapa 7 ,[(Rio 2 , [Tronco,Tronco,Tronco,Nenhum,Tronco,Nenhum,Nenhum])])
+</code></strong> True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>troncoValido (Mapa 8 ,[(Rio 2 , [Tronco,Tronco,Tronco,Tronco,Tronco,Tronco,Nenhum,Nenhum])])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a id="v:group" class="def">group</a> :: Eq a =&gt; [a] -&gt; [[a]] <a href="#v:group" class="selflink">#</a></p></div><div class="top"><p class="src"><a id="v:troncoValidoAux" class="def">troncoValidoAux</a> :: (<a href="LI12223.html#t:Terreno" title="LI12223">Terreno</a>, [<a href="LI12223.html#t:Obstaculo" title="LI12223">Obstaculo</a>]) -&gt; Bool <a href="#v:troncoValidoAux" class="selflink">#</a></p></div><div class="top"><p class="src"><a id="v:troncoValidoAux2" class="def">troncoValidoAux2</a> :: (<a href="LI12223.html#t:Terreno" title="LI12223">Terreno</a>, [<a href="LI12223.html#t:Obstaculo" title="LI12223">Obstaculo</a>]) -&gt; Bool <a href="#v:troncoValidoAux2" class="selflink">#</a></p></div><div class="top"><p class="src"><a id="v:carroValidoAux" class="def">carroValidoAux</a> :: (<a href="LI12223.html#t:Terreno" title="LI12223">Terreno</a>, [<a href="LI12223.html#t:Obstaculo" title="LI12223">Obstaculo</a>]) -&gt; Bool <a href="#v:carroValidoAux" class="selflink">#</a></p><div class="doc"><p>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g014.html#v:carroValido" title="Tarefa1_2022li1g014">carroValido</a></code> classifica um mapa como verdadeiro ou falso tendo como crit&#233;rio a condi&#231;&#227;o 5, utilizando as fun&#231;&#245;es auxiliares <code><a href="Tarefa1_2022li1g014.html#v:carroValidoAux" title="Tarefa1_2022li1g014">carroValidoAux</a></code> e <code><a href="Tarefa1_2022li1g014.html#v:carroValidoAux2" title="Tarefa1_2022li1g014">carroValidoAux2</a></code> .</p><p>Esta fun&#231;&#227;o est&#225; definida por :</p><pre>
+carroValidoAux :: (Terreno,[Obstaculo])-&gt;Bool
+carroValidoAux (Estrada v,[x1])=True
+carroValidoAux (Estrada v,[x1,x2])=True
+carroValidoAux (Estrada v,[x1,x2,x3])=True
+carroValidoAux (Estrada v , (x1:x2:x3:x4:t)) |x1==Carro &amp;&amp; x1==x2 &amp;&amp; x1==x3 &amp;&amp; x1==x4 = False
+                                             |otherwise = carroValidoAux (Estrada v,x2:x3:x4:t)
+carroValidoAux (Relva , l)=True
+carroValidoAux (Rio v,l)=True
+
+carroValidoAux2 :: (Terreno, [Obstaculo]) -&gt; Bool
+carroValidoAux2 (Estrada v,l)  |elem Carro (head (group l)) &amp;&amp; elem Carro (last (group l)) &amp;&amp; (length (head (group l))+length (last (group l))&gt;3) = False
+                               |otherwise = True
+carroValidoAux2 (Rio v,l)=True
+carroValidoAux2 (Relva,l)=True
+
+carroValido :: Mapa-&gt;Bool
+carroValido (Mapa x [])=True
+carroValido (Mapa x (h:t))|carroValidoAux h == False || carroValidoAux2 h ==False  = False
+                          |otherwise = carroValido (Mapa x t) 
+</pre><h2>Exemplos de utiliza&#231;&#227;o :</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>carroValido (Mapa 5 [(Estrada 2 ,[Carro,Carro,Carro,Nenhum,Carro])])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>carroValido (Mapa 5 [(Estrada 4 ,[Carro,Carro,Carro,Nenhum,Nenhum])])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>carroValido (Mapa 6 [(Estrada 2 ,[Carro,Carro,Carro,Carro,Nenhum,Nenhum])])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a id="v:carroValidoAux2" class="def">carroValidoAux2</a> :: (<a href="LI12223.html#t:Terreno" title="LI12223">Terreno</a>, [<a href="LI12223.html#t:Obstaculo" title="LI12223">Obstaculo</a>]) -&gt; Bool <a href="#v:carroValidoAux2" class="selflink">#</a></p></div><div class="top"><p class="src"><a id="v:carroValido" class="def">carroValido</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:carroValido" class="selflink">#</a></p></div><div class="top"><p class="src"><a id="v:obsSeguidos" class="def">obsSeguidos</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:obsSeguidos" class="selflink">#</a></p><div class="doc"><p>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g014.html#v:obsSeguidos" title="Tarefa1_2022li1g014">obsSeguidos</a></code> classifica um mapa como verdadeiro ou falso tendo como crit&#233;rio a condi&#231;&#227;o 6 . </p><p>Esta fun&#231;&#227;o est&#225; definida por :</p><pre>
+obsSeguidos::Mapa-&gt;Bool
+obsSeguidos (Mapa x [])=True
+obsSeguidos (Mapa x ((a,l):t)) |elem Nenhum l == False =False
+                               |otherwise = obsSeguidos (Mapa x t)
+</pre><h2>Exemplos de utiliza&#231;&#227;o :</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>obsSeguidos (Mapa 2 [(Estrada 3 ,[Carro,Carro])])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>obsSeguidos (Mapa 3 [(Estrada 2 ,[Nenhum,Nenhum,Carro])])
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a id="v:larguraObs" class="def">larguraObs</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:larguraObs" class="selflink">#</a></p><div class="doc"><p>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g014.html#v:larguraObs" title="Tarefa1_2022li1g014">larguraObs</a></code> classifica um mapa como verdadeiro ou falso tendo como crit&#233;rio a condi&#231;&#227;o 7 . </p><p>Esta fun&#231;&#227;o est&#225; definida por :</p><pre>
+larguraObs::Mapa-&gt;Bool
+larguraObs (Mapa x [])=True
+larguraObs (Mapa x ((te,l):t)) |x&lt;=0 = False
+                               |x/=length l = False 
+                               |otherwise = larguraObs (Mapa x t)
+</pre><h2>Exemplos de utiliza&#231;&#227;o : </h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>larguraObs (Mapa 2 [(Rio 2 ,[Tronco])])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>larguraObs (Mapa 2 [(Rio 2 ,[Tronco,Nenhum])])
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a id="v:terrenosContiguos" class="def">terrenosContiguos</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:terrenosContiguos" class="selflink">#</a></p><div class="doc"><p>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g014.html#v:terrenosContiguos" title="Tarefa1_2022li1g014">terrenosContiguos</a></code> classifica um mapa como verdadeiro ou falso tendo como crit&#233;rio a &#250;ltima condi&#231;&#227;o .</p><p>Esta fun&#231;&#227;o est&#225; definida por :</p><pre>
+terrenosContiguos::Mapa-&gt;Bool
+terrenosContiguos (Mapa x [])=True
+terrenosContiguos (Mapa x ((Estrada v,l):(Estrada v2,l2):(Estrada v3,l3):(Estrada v4 ,l4):(Estrada v5,l5):(Estrada v6,l6):t))=False
+terrenosContiguos (Mapa x ((Rio v,l):(Rio v2,l2):(Rio v3,l3):(Rio v4 ,l4):(Rio v5,l5):t))=False
+terrenosContiguos (Mapa x ((Relva,l):(Relva,l2):(Relva,l3):(Relva,l4):(Relva,l5):(Relva,l6):t))=False
+terrenosContiguos (Mapa x (h:t)) = terrenosContiguos (Mapa x t)
+</pre><h2>Exemplos de utiliza&#231;&#227;o :</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>terrenosContiguos (Mapa 2 [(Rio 2 ,[Nenhum,Tronco]),(Rio 3 ,[Tronco,Nenhum]),(Rio 1 ,[Tronco,Nenhum]),(Rio (-1),[Nenhum,Tronco]),(Rio 2 ,[Nenhum,Tronco])])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>terrenosContiguos (Mapa 2 [(Rio 2 ,[Nenhum,Tronco]),(Rio 3 ,[Tronco,Nenhum]),(Rio 1 ,[Tronco,Nenhum]),(Rio (-1),[Nenhum,Tronco]),(Estrada 2 ,[Nenhum,Nenhum])])
+</code></strong>True
+</pre></div></div><div class="top"><p class="src"><a id="v:mapaValido" class="def">mapaValido</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:mapaValido" class="selflink">#</a></p><div class="doc"><p>Por fim a fun&#231;&#227;o principal , que junta todas as outras e classifica um mapa tendo em conta todas as condi&#231;&#245;es .</p><p>Esta fun&#231;&#227;o est&#225; definida por :</p><pre>
+mapaValido :: Mapa -&gt; Bool
+mapaValido (Mapa x l)= if obstaculosMapa (Mapa x l) &amp;&amp; riosContiguos (Mapa x l) &amp;&amp; rioTronco (Mapa x l) &amp;&amp; troncoValido (Mapa x l) &amp;&amp; carroValido (Mapa x l) &amp;&amp; obsSeguidos (Mapa x l) &amp;&amp; larguraObs (Mapa x l) &amp;&amp; terrenosContiguos (Mapa x l) then True else False
+</pre><h2>Exemplos de utiliza&#231;&#227;o :</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mapaValido (Mapa 2 [(Rio 2 ,[Nenhum,Tronco]),(Rio 2 ,[Nenhum,Tronco]),(Estrada 2 , [Carro,Carro])])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mapaValido (Mapa 2 [(Rio 2 ,[Nenhum,Tronco]),(Rio (-2) ,[Nenhum,Tronco]),(Estrada 2 , [Carro,Carro])])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mapaValido (Mapa 2 [(Rio 2 ,[Nenhum,Tronco]),(Rio (-2) ,[Nenhum,Tronco]),(Estrada 2 , [Nenhum,Carro])])
+</code></strong>True
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mapaValido (Mapa 2 [(Rio 2 ,[Nenhum,Tronco]),(Rio (-2) ,[Nenhum,Nenhum]),(Estrada 2 , [Carro,Nenhum])])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mapaValido (Mapa 6 [(Rio 2 ,[Nenhum,Tronco,Nenhum,Tronco,Nenhum,Nenhum]),(Rio (-2) ,[Nenhum,Tronco,Tronco,Tronco,Tronco,Tronco]),(Estrada 2 , [Nenhum,Carro,Nenhum,Nenhum,Nenhum,Nenhum])])
+</code></strong>False
+</pre><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mapaValido (Mapa 6 [(Rio 2 ,[Nenhum,Tronco,Nenhum,Tronco,Nenhum,Nenhum]),(Rio (-2) ,[Nenhum,Tronco,Tronco,Tronco,Nenhum,Tronco]),(Estrada 2 , [Nenhum,Carro,Nenhum,Nenhum,Nenhum,Nenhum])])
+</code></strong>True
+</pre></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.26.0</p></div></body></html>
