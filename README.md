@@ -8,7 +8,6 @@ our [LI1](https://www4.di.uminho.pt/~jno/sitedi/uc_J302N6.html) class.
 ### Dependencies
 
  - GHCup (build-time)
- - GHCI (build-time)
  - Bash (build-time)
  - Gloss (Haskell library)
 
