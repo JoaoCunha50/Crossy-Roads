@@ -1,6 +1,6 @@
 # Crossy Roads
 
-## Grade: 18/20 :star:
+## Grade: 15/20 :star:
 
 An Crossy Roads like game, made for
 our [LI1](https://www4.di.uminho.pt/~jno/sitedi/uc_J302N6.html) class. 
