@@ -1,5 +1,7 @@
 # Crossy Roads
 
+My Very first coding project;
+
 ## Grade: 15/20 :star:
 
 An Crossy Roads like game, made for
